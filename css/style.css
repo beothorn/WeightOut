@@ -32,12 +32,13 @@ body {
     margin: 0px;
 }
         
-#weigthLineChartContainer {
+#chartContainer {
     display: inline-block;
     position: relative;
     width: 100%;
     padding-bottom: 65%;/* aspect ratio */
     vertical-align: top;
+    text-align: center;
     overflow: hidden;
 }
 

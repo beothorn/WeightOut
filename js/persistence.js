@@ -23,7 +23,6 @@ var Persistence = (function(){
       this.loaded = true;
       if(this.afterLoaded)
         this.afterLoaded();
-      console.log("success: "+ this.db);
     }.bind(this);
 
     request.onupgradeneeded = function(event) {
@@ -31,7 +30,7 @@ var Persistence = (function(){
       var objectStore = db.createObjectStore("measurement", {keyPath: "d"});
     }
 
-    this.doAfterLoad = function(callback){
+    var doAfterLoad = function(callback){
         if(this.loaded){
           callback();
         }else{
@@ -39,7 +38,7 @@ var Persistence = (function(){
         }
     }.bind(this);
 
-    this.readAll = function(callback) {
+    var readAll = function(callback) {
       var objectStore = this.db.transaction("measurement").objectStore("measurement");
       var results = [];
       objectStore.openCursor().onsuccess = function(event) {
@@ -54,7 +53,7 @@ var Persistence = (function(){
       };
     }.bind(this);
 
-    this.add = function(measurement, callback) {
+    var add = function(measurement, callback) {
       var request = this.db.transaction(["measurement"], "readwrite")
         .objectStore("measurement")
         .add(measurement);
@@ -69,11 +68,16 @@ var Persistence = (function(){
       }
     }.bind(this);
 
-    this.remove = function(date){
+    var remove = function(date){
         var request = db.transaction(["measurement"], "readwrite")
             .objectStore("measurement")
             .delete(date);    
     }.bind(this);
 
-    return this;
+    return {
+        readAll: readAll,
+        add: add,
+        remove: remove,
+        doAfterLoad: doAfterLoad
+    };
 })();

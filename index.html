@@ -18,7 +18,7 @@
 <nav>
     <div class="nav-wrapper">
         <a href="#" class="brand-logo right">
-            <span class="logoContainer"><img src="media/logo.svg"></span>
+            <img src="media/logo.svg">
         </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse">
             <i class="material-icons">menu</i>
@@ -36,34 +36,65 @@
             <li><a href="#!">BMI</a></li>
         </ul>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="#">Overview</a></li>
+            <li class="active"><a href="#">Overview</a></li>
             <li><a href="#">Values</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="chartsDropdown">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#"><i class="material-icons right">settings</i>Settings</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Overview</a></li>
+            <li class="active"><a href="#">Overview</a></li>
             <li><a href="#">Values</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="chartsDropdownMobile">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#"><i class="material-icons right">settings</i>Settings</a></li>
         </ul>
     </div>
 </nav>
 
-<div id="weigthLineChartContainer"></div>
+<div id="charts">
+    <div id="chartContainer"></div>
 
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#addValueModal">
+          <i class="large material-icons">add</i>
+        </a>
+    </div>
+</div>
 
-<input id="datePicker" class="datepicker" type="date">
-<p class="range-field">
-    <input id="weightPicker" type="range" min="40" max="180" step="0.1" />
-</p>
-<a id="enterWeight" class="btn-floating btn-large waves-effect waves-light red">
-    <i class="material-icons">add</i>
-</a>
-
-
+<div id="addValueModal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12">
+                <div class="input-field col s12">
+                    <p class="range-field">
+                        <input id="weightUnit" type="range" min="40" max="180" step="1" />
+                    </p>
+                    <label for="weightUnit">Kg</label>
+                </div>
+                <div class="input-field col s10">
+                    <p class="range-field">
+                        <input id="weightDecimal" type="range" min="0" max="0.99" step="0.01" />
+                    </p>
+                    <label for="weightDecimal">Grams</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input id="datePicker" class="datepicker" type="date">
+                        <label for="datePicker">Date</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" id="enterWeight" class=" modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="js/jquery-1.12.2.min.js"></script>
 <script src="js/d3.min.js"></script>
 <script src="js/persistence.js"></script>
+<script src="js/charts.js"></script>
 <script src="js/main.js"></script>
 
  <!--Import jQuery before materialize.js-->
