@@ -8,6 +8,21 @@ Date.prototype.toDateInputValue = (function() {
 
 $(function(){
 
+  Renderer.renderTabs({
+    "overview":"Overview",
+    "values":"Values",
+    "charts":{
+      "category":"Charts",
+      "subCategories":{
+        "bydate":"By Date",
+        "variation":"Variation",
+        "variationByWeekday":"Week day variation",
+        "bmi":"BMI"
+      }
+    },
+    "settings":"Settings"
+  });
+
   $(".button-collapse").sideNav();
   $('.modal-trigger').leanModal();
   $('#datePicker').val(new Date().toDateInputValue());
@@ -16,6 +31,10 @@ $(function(){
     selectYears: 1, // Creates a dropdown of 15 years to control year
     format: 'yyyy-mm-dd',
     container: 'body'
+  });
+
+  $(window).on('hashchange',function(){ 
+    console.log(location.hash.slice(1));
   });
 
   Persistence.doAfterLoad(function(){

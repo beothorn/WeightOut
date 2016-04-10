@@ -16,41 +16,37 @@
 <body>
 
 <nav>
-    <div class="nav-wrapper">
+    <div id="navBar" class="nav-wrapper">
         <a href="#" class="brand-logo right">
             <img class="weightOutLogo" src="media/logo.svg">
         </a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <a href="#" data-activates="side-nav" class="button-collapse">
             <i class="material-icons">menu</i>
         </a>
-        <ul id="chartsDropdown" class="dropdown-content">
-            <li><a href="#!">By date</a></li>
-            <li><a href="#!">Variation</a></li>
-            <li><a href="#!">Week day variation</a></li>
-            <li><a href="#!">BMI</a></li>
-        </ul>
-        <ul id="chartsDropdownMobile" class="dropdown-content">
-            <li><a href="#!">By date</a></li>
-            <li><a href="#!">Variation</a></li>
-            <li><a href="#!">Week day variation</a></li>
-            <li><a href="#!">BMI</a></li>
-        </ul>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Values</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="chartsDropdown">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a href="#"><i class="material-icons right">settings</i>Settings</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Values</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="chartsDropdownMobile">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a href="#"><i class="material-icons right">settings</i>Settings</a></li>
-        </ul>
+        <ul id="top-nav" class="left hide-on-med-and-down"></ul>
+        <ul id="side-nav" class="side-nav"></ul>
     </div>
 </nav>
 
-<div id="charts">
+<div id="overview" class="firstPanel">
+    <div class="row">
+      <div class="col s12 m5">
+        <div class="card-panel teal">
+          <span class="white-text">99Kg</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="values" class="panel" style="display:none">
+    <h1>Values goes here</h1>
+</div>
+
+<div id="settings" class="panel" style="display:none">
+    <h1>Settings goes here</h1>
+</div>
+
+<div id="charts" class="panel" style="display:none">
     <div id="chartContainer"></div>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -95,6 +91,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/persistence.js"></script>
 <script src="js/charts.js"></script>
+<script src="js/renderer.js"></script>
 <script src="js/main.js"></script>
 
  <!--Import jQuery before materialize.js-->
