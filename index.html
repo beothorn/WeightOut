@@ -18,7 +18,7 @@
 <nav>
     <div class="nav-wrapper">
         <a href="#" class="brand-logo right">
-            <img src="media/logo.svg">
+            <img class="weightOutLogo" src="media/logo.svg">
         </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse">
             <i class="material-icons">menu</i>
@@ -70,24 +70,24 @@
                     </p>
                     <label for="weightUnit">Kg</label>
                 </div>
-                <div class="input-field col s10">
+                <div class="input-field col s12">
                     <p class="range-field">
                         <input id="weightDecimal" type="range" min="0" max="0.99" step="0.01" />
                     </p>
                     <label for="weightDecimal">Grams</label>
                 </div>
                 <div class="row">
-                    <div class="input-field col s2">
+                    <div class="input-field col s12">
                         <input id="datePicker" class="datepicker" type="date">
                         <label for="datePicker">Date</label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="#!" id="enterWeight" class=" modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-                </div>
             </form>
         </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" id="enterWeight" class=" modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
     </div>
 </div>
 
