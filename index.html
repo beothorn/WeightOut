@@ -2,22 +2,72 @@
 <head>
 
 
-<link rel="stylesheet" type="text/css" href="style.css">
-<script src="jquery-1.12.2.min.js"></script>
-<script src="d3.min.js"></script>
-<script src="persistence.js"></script>
-<script src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
+<!--Import Google Icon Font-->
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 <body>
 
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo right">
+            <span class="logoContainer"><img src="media/logo.svg"></span>
+        </a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse">
+            <i class="material-icons">menu</i>
+        </a>
+        <ul id="chartsDropdown" class="dropdown-content">
+            <li><a href="#!">By date</a></li>
+            <li><a href="#!">Variation</a></li>
+            <li><a href="#!">Week day variation</a></li>
+            <li><a href="#!">BMI</a></li>
+        </ul>
+        <ul id="chartsDropdownMobile" class="dropdown-content">
+            <li><a href="#!">By date</a></li>
+            <li><a href="#!">Variation</a></li>
+            <li><a href="#!">Week day variation</a></li>
+            <li><a href="#!">BMI</a></li>
+        </ul>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Values</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="chartsDropdown">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Values</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="chartsDropdownMobile">Charts<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    </div>
+</nav>
+
 <div id="weigthLineChartContainer"></div>
 
 
-<input id="datePicker" type="date">
-<input id="weightPicker" type="number" min="0" step="0.1">
-<button id="enterWeight">Add</button>
+<input id="datePicker" class="datepicker" type="date">
+<p class="range-field">
+    <input id="weightPicker" type="range" min="40" max="180" step="0.1" />
+</p>
+<a id="enterWeight" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">add</i>
+</a>
+
+
+
+<script src="js/jquery-1.12.2.min.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/persistence.js"></script>
+<script src="js/main.js"></script>
+
+ <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="js/materialize.min.js"></script>
 
 </body>
 </html>

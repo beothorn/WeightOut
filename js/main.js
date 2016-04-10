@@ -82,7 +82,13 @@ function setupWeightLineChart(dataset){
 $(function(){
   console.log("OK");
 
+  $(".button-collapse").sideNav();
   $('#datePicker').val(new Date().toDateInputValue());
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 1, // Creates a dropdown of 15 years to control year
+    format: 'yyyy-mm-dd'
+  });
 
   Persistence.doAfterLoad(function(){
     Persistence.readAll(function(values){

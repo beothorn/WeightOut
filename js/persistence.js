@@ -69,18 +69,11 @@ var Persistence = (function(){
       }
     }.bind(this);
 
+    this.remove = function(date){
+        var request = db.transaction(["measurement"], "readwrite")
+            .objectStore("measurement")
+            .delete(date);    
+    }.bind(this);
+
     return this;
 })();
-
-
-/**
- function remove() {
-    var request = db.transaction(["employee"], "readwrite")
-    .objectStore("employee")
-    .delete("00-03");
-
-    request.onsuccess = function(event) {
-       alert("Kenny's entry has been removed from your database.");
-    };
- }
- **/
