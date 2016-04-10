@@ -27,4 +27,38 @@
     fill: none;
 }
         
-       
+body {
+    padding: 0px;
+    margin: 0px;
+}
+        
+#weigthLineChartContainer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 65%;/* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+#weightSVGChart {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+#datePicker{
+    width: 33%;
+    font-size: 3em;
+}
+
+#weightPicker{
+    width: 33%;
+    font-size: 3em;
+}
+
+#enterWeight{
+    width: 33%;
+    font-size: 3em;
+}
