@@ -15,9 +15,9 @@ $(function(){
       "category":"Charts",
       "subCategories":{
         "bydate":"By Date",
-        "variation":"Variation",
-        "variationByWeekday":"Week day variation",
-        "bmi":"BMI"
+//        "variation":"Variation",
+//        "variationByWeekday":"Week day variation",
+//        "bmi":"BMI"
       }
     },
     "settings":"Settings"
@@ -34,7 +34,8 @@ $(function(){
   });
 
   $(window).on('hashchange',function(){ 
-    console.log(location.hash.slice(1));
+    var view = location.hash.slice(1);
+    Renderer.bringPanelUp(view);
   });
 
   Persistence.doAfterLoad(function(){

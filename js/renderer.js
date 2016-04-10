@@ -2,21 +2,30 @@ var Renderer = (function(){
     
     var topNav = function(){
         return document.getElementById("top-nav");
-    }
+    };
 
     var sideNav = function(){
         return document.getElementById("side-nav");
-    }
+    };
 
     var navBar = function(){
         return document.getElementById("navBar");
-    }
+    };
+
+    var bringPanelUp = function(panelName){
+        var panels = document.getElementsByClassName("panel");
+        for(var i=0; i< panels.length; i++){
+            panels[i].style.display = "none";
+        }
+        document.getElementById(panelName).style.display = "block";
+    };
 
     var renderTabMenuEntry = function(name, text){
         var li = document.createElement("li");
         li.className = name;
         if(document.querySelector("div#"+name).classList.contains("firstPanel")){
             li.className += " active";
+            window.location.hash = "#"+name;
         }
         var a = document.createElement("a");
         a.href = "#"+name;
@@ -25,7 +34,7 @@ var Renderer = (function(){
 
         topNav().appendChild(li);
         sideNav().appendChild(li.cloneNode(true));
-    }
+    };
 
     var renderDropdownMenuItem = function(category, categoryName, dropDownToActivate){
         var li = document.createElement("li");
@@ -40,7 +49,7 @@ var Renderer = (function(){
         a.appendChild(i);
         li.appendChild(a);
         return li;
-    }
+    };
 
     var renderTabSubMenuEntry = function(category, categoryName, subCategories){
         var dropDownName = category+"DropDown";
@@ -61,6 +70,7 @@ var Renderer = (function(){
             var li = document.createElement("li");
             li.className = sub;
             var a = document.createElement("a");
+            a.onClick = function(){bringPanelUp(sub);};
             a.appendChild(document.createTextNode(subCategories[sub]));
             a.href = "#"+sub;
             li.appendChild(a);
@@ -70,7 +80,7 @@ var Renderer = (function(){
 
         navBar().appendChild(ul);
         navBar().appendChild(ulMobile);
-    }
+    };
 
     var renderTabs = function(tabs){
         for(tabProp in tabs){
@@ -83,8 +93,8 @@ var Renderer = (function(){
         }
     };
 
-
     return {
-        renderTabs: renderTabs
+        renderTabs:renderTabs,
+        bringPanelUp:bringPanelUp
     };
 })();
