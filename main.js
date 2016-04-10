@@ -127,6 +127,7 @@ $(function(){
   $('#weightPicker').val(datasetToLoad[datasetToLoad.length-1].w);
 
   Persistence.doAfterLoad(function(){
+    datasetToLoad.forEach(function(x){Persistence.add(x)});
     Persistence.readAll(function(values){
       setupWeightLineChart(values);
     });
