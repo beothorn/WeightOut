@@ -23,7 +23,7 @@ $(function(){
     "settings":"Settings"
   });
 
-  $(".button-collapse").sideNav();
+  $("#hamburguerButton").sideNav();
   $('.modal-trigger').leanModal();
   $('#datePicker').val(new Date().toDateInputValue());
   $('.datepicker').pickadate({
