@@ -12,6 +12,45 @@ var Renderer = (function(){
         return document.getElementById("navBar");
     };
 
+    var renderValuesPanel = function(){
+        var ul = document.querySelector("#values ul");
+        ul.innerHTML = "";
+        var allValues = Persistence.readAll(function(values){
+            values.forEach(function(value){
+                var li = document.createElement("li");
+                li.className = "collection-item";
+                var span = document.createElement("span");
+                span.appendChild(document.createTextNode(value.d+" - "+value.w));
+                li.appendChild(span);
+                var a = document.createElement("a");
+                a.href = "#";
+                a.className="secondary-content";
+                a.onclick = function(){
+                    Persistence.remove(value.d);
+                    li.parentElement.removeChild(li);
+                };
+                var i = document.createElement("i");
+                i.className = "material-icons";
+                i.appendChild(document.createTextNode("delete"));
+                a.appendChild(i);
+                li.appendChild(a);
+
+                ul.appendChild(li);
+            });
+        });
+    };
+
+    var renderByDateChart = function(){
+        Persistence.readAll(function(values){
+            Charts.setupWeightLineChart(values);
+        });
+    }
+
+    var renderPanel = function(panelName){
+        if(panelName === "values") renderValuesPanel();
+        if(panelName === "bydate") renderByDateChart();
+    };
+
     var bringPanelUp = function(panelName){
         if(panelName ==="") return;
         var activeMenuItems = document.querySelectorAll("nav ul li.active");
@@ -26,8 +65,9 @@ var Renderer = (function(){
         var panels = document.getElementsByClassName("panel");
         for(var i=0; i< panels.length; i++){
             panels[i].style.display = "none";
-
+            renderPanel(panelName);
         }
+
         document.getElementById(panelName).style.display = "block";
         $("#hamburguerButton").sideNav('hide');//depends on jquery cause it's a plugin :(
     };
