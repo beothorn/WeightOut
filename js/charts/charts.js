@@ -6,6 +6,8 @@ var Charts = (function(){
       var height = 400;
       var margin = 40;
 
+      var rangeMargin = 5;
+
       var svgId = "weightSVGChart";
       var weightLineDiv = this.chartContainer;
 
@@ -41,11 +43,12 @@ var Charts = (function(){
         .scale
         .linear()
         .range([rangeYStart, rangeYEnd])
-        .domain([targetWeight, d3.max(dataset, weigthFun)]);
+        .domain([d3.min(dataset, weigthFun)-rangeMargin, d3.max(dataset, weigthFun)+rangeMargin]);
 
       var xAxis = d3
         .svg
         .axis()
+        .ticks(d3.time.days, 1)
         .scale(xRange);
 
       var yAxis = d3
