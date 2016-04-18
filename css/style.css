@@ -52,3 +52,7 @@ body {
 .weightOutLogo{
     height: 100%;
 }
+
+.filler{
+    height: 200px;
+}
