@@ -14,19 +14,21 @@
 </head>
 <body>
 
-<div class="navbar-fixed"><nav>
-    <div id="navBar" class="nav-wrapper">
-        <a class="brand-logo center">Weight Out</a>
-        <a href="#" class="brand-logo right">
-            <img class="weightOutLogo" src="media/logo.svg">
-        </a>
-        <a id="hamburguerButton"  href="#overview" data-activates="side-nav" class="button-collapse">
-            <i class="material-icons">menu</i>
-        </a>
-        <ul id="top-nav" class="left hide-on-med-and-down"></ul>
-        <ul id="side-nav" class="side-nav"></ul>
-    </div>
-</nav></div>
+<div class="navbar-fixed">
+    <nav>
+        <div id="navBar" class="nav-wrapper">
+            <a class="brand-logo center">Weight Out</a>
+            <a href="#" class="brand-logo right">
+                <img class="weightOutLogo" src="media/logo.svg">
+            </a>
+            <a id="hamburguerButton"  href="#overview" data-activates="side-nav" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul id="top-nav" class="left hide-on-med-and-down"></ul>
+            <ul id="side-nav" class="side-nav"></ul>
+        </div>
+    </nav>
+</div>
 
 <div id="overview" class="firstPanel panel">
     <div class="row">
@@ -48,7 +50,7 @@
     </div>
 
     <div class="filler"></div>
-    
+
 </div>
 
 <div id="settings" class="panel" style="display:none">
@@ -63,18 +65,16 @@
     <div class="modal-content">
         <div class="row">
             <form class="col s12">
-                <div class="input-field col s12">
-                    <p class="range-field">
-                        <input id="weightUnit" type="range" min="40" max="180" step="1" />
-                    </p>
-                    <label for="weightUnit">Kg</label>
+                <div class="input-field col s12 m4">
+                    <input id="weightUnit" type="number" value="0" name="weightUnit" min="0" class="validate"  />
+                    <label for="weightUnit" class="active">Kg</label>
                 </div>
-                <div class="input-field col s12">
-                    <p class="range-field">
-                        <input id="weightDecimal" type="range" min="0" max="0.99" step="0.01" />
-                    </p>
-                    <label for="weightDecimal">Grams</label>
+
+                <div class="input-field col s12 m4">
+                    <input id="weightDecimal" type="number" value="0" name="weightDecimal" min="0" max="9" class="validate"  />
+                    <label for="weightDecimal" class="active" >Grams</label>
                 </div>
+                
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="datePicker" class="datepicker" type="date">
@@ -94,6 +94,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/persistence.js"></script>
 <script src="js/charts.js"></script>
+<script src="js/render/ValuesView.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/main.js"></script>
 

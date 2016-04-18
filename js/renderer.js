@@ -13,30 +13,11 @@ var Renderer = (function(){
     };
 
     var renderValuesPanel = function(){
-        var ul = document.querySelector("#values ul");
-        ul.innerHTML = "";
-        var allValues = Persistence.readAll(function(values){
-            values.forEach(function(value){
-                var li = document.createElement("li");
-                li.className = "collection-item";
-                var span = document.createElement("span");
-                span.appendChild(document.createTextNode(value.d+" - "+value.w));
-                li.appendChild(span);
-                var a = document.createElement("a");
-                a.href = "#";
-                a.className="secondary-content";
-                a.onclick = function(){
-                    Persistence.remove(value.d);
-                    li.parentElement.removeChild(li);
-                };
-                var i = document.createElement("i");
-                i.className = "material-icons";
-                i.appendChild(document.createTextNode("delete"));
-                a.appendChild(i);
-                li.appendChild(a);
-
-                ul.appendChild(li);
-            });
+        Persistence.readAll(function(values){
+            var deleteCallback = function(value){
+                Persistence.remove(value.d);
+            };
+            ValuesView.render(values, deleteCallback);
         });
     };
 
@@ -52,7 +33,7 @@ var Renderer = (function(){
     };
 
     var bringPanelUp = function(panelName){
-        if(panelName ==="") return;
+        if(panelName === "" || panelName === "!") return;
         var activeMenuItems = document.querySelectorAll("nav ul li.active");
         for(var i=0; i< activeMenuItems.length; i++){
             activeMenuItems[i].classList.remove("active");
