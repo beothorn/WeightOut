@@ -30,9 +30,11 @@
     </nav>
 </div>
 
+<div class="container">
+
 <div id="overview" class="firstPanel panel">
     <div class="row">
-      <div class="col s12 m5">
+      <div class="col s12">
         <div class="card-panel teal">
           <span class="white-text">99Kg</span>
         </div>
@@ -65,14 +67,16 @@
     <div class="modal-content">
         <div class="row">
             <form class="col s12">
-                <div class="input-field col s12 m4">
-                    <input id="weightUnit" type="number" value="0" name="weightUnit" min="0" class="validate"  />
-                    <label for="weightUnit" class="active">Kg</label>
-                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="weightUnit" type="number" value="0" name="weightUnit" min="0" class="validate"  />
+                        <label for="weightUnit" class="active">Kg</label>
+                    </div>
 
-                <div class="input-field col s12 m4">
-                    <input id="weightDecimal" type="number" value="0" name="weightDecimal" min="0" max="9" class="validate"  />
-                    <label for="weightDecimal" class="active" >Grams</label>
+                    <div class="input-field col s12 m6">
+                        <input id="weightDecimal" type="number" value="0" name="weightDecimal" min="0" max="9" class="validate"  />
+                        <label for="weightDecimal" class="active" >Grams</label>
+                    </div>
                 </div>
                 
                 <div class="row">
@@ -88,6 +92,8 @@
         <a href="#!" id="enterWeight" class=" modal-action modal-close waves-effect waves-green btn-flat">Enter</a>
         <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
     </div>
+</div>
+
 </div>
 
 <script src="js/jquery-1.12.2.min.js"></script>
