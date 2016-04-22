@@ -16,7 +16,7 @@
 
 <div class="navbar-fixed">
     <nav>
-        <div id="navBar" class="nav-wrapper">
+        <div id="navBar" class="nav-wrapper black">
             <a class="brand-logo center">Weight Out</a>
             <a href="#" class="brand-logo right">
                 <img class="weightOutLogo" src="media/logo.svg">
@@ -68,12 +68,18 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12 m6">
+                    <div class="input-field col s10 m4">
+                        <input id="weightUnitRange" type="range" min="40" max="180" step="1" />
+                    </div>
+                    <div class="input-field col s2 m2">
                         <input id="weightUnit" type="number" value="0" name="weightUnit" min="0" class="validate"  />
                         <label for="weightUnit" class="active">Kg</label>
                     </div>
-
-                    <div class="input-field col s12 m6">
+                    
+                    <div class="input-field col s10 m4">
+                        <input id="weightDecimalRange" type="range" min="0" max="9" step="1" />
+                    </div>
+                    <div class="input-field col s2 m2">
                         <input id="weightDecimal" type="number" value="0" name="weightDecimal" min="0" max="9" class="validate"  />
                         <label for="weightDecimal" class="active" >Grams</label>
                     </div>
