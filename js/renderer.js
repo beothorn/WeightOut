@@ -12,26 +12,6 @@ var Renderer = (function(){
         return document.getElementById("navBar");
     };
 
-    var renderValuesPanel = function(){
-        Persistence.readAll(function(values){
-            var deleteCallback = function(value){
-                Persistence.remove(value.d);
-            };
-            ValuesView.render(values, deleteCallback);
-        });
-    };
-
-    var renderByDateChart = function(){
-        Persistence.readAll(function(values){
-            Charts.setupWeightLineChart(values);
-        });
-    }
-
-    var renderPanel = function(panelName){
-        if(panelName === "values") renderValuesPanel();
-        if(panelName === "bydate") renderByDateChart();
-    };
-
     var bringPanelUp = function(panelName){
         if(panelName === "" || panelName === "!") return;
         var activeMenuItems = document.querySelectorAll("nav ul li.active");
@@ -46,7 +26,6 @@ var Renderer = (function(){
         var panels = document.getElementsByClassName("panel");
         for(var i=0; i< panels.length; i++){
             panels[i].style.display = "none";
-            renderPanel(panelName);
         }
 
         document.getElementById(panelName).style.display = "block";

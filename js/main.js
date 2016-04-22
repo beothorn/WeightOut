@@ -39,25 +39,6 @@ $(function(){
   });
 
   Persistence.doAfterLoad(function(){
-    //Render overview
+    Dispatcher.loadValues();
   });
-
-  $("#enterWeight").click(function(){
-    var date = $("#datePicker").val();
-
-    var kgInput = $("#weightUnit").val() || "0";
-    var gramsInput = $("#weightDecimal").val() || "0";
-
-    var kg = parseFloat(kgInput);
-    var grams = parseFloat(gramsInput/10);
-
-    var weight = kg + grams;
-    Persistence.add({w:weight, d:date},function(){
-      Persistence.readAll(function(values){
-        Charts.setupWeightLineChart(values);
-        ValuesView.render(values);
-      });
-    });
-  });
-
 });

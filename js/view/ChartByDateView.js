@@ -1,4 +1,4 @@
-var Charts = (function(){
+var ChartByDateView = (function(){
     this.chartContainer = "#chartContainer";
     
     var setupWeightLineChart = function(dataset){

@@ -1,5 +1,11 @@
 var ValuesView = (function(){
 
+    var valuesId = "values";
+
+    var dateWithoutSpecialChars = function(date){
+        return "val"+date.split("-").join("");
+    };
+
     var clearList = function(ul){
         ul.innerHTML = "";
     };
@@ -16,13 +22,12 @@ var ValuesView = (function(){
         return span;
     }
 
-    var createDeleteLink = function(value, deleteCallback, li){
+    var createDeleteLink = function(value, li){
         var a = document.createElement("a");
         a.href = "#";
         a.className="secondary-content";
         a.onclick = function(){
-            deleteCallback(value);
-            li.parentElement.removeChild(li);
+            Dispatcher.deleteValue(value);
         };
         var i = document.createElement("i");
         i.className = "material-icons";
@@ -31,30 +36,29 @@ var ValuesView = (function(){
         return a;
     };
 
-    var fillAddWeightValues = function(values){
-        var lastValue = values[values.length - 1].w;
-        var weightSplitted = (lastValue+"").split(".");
-        document.getElementById("weightUnit").value = weightSplitted[0];
-        document.getElementById("weightDecimal").value = weightSplitted[1];
-    };
-
-    var fillList = function(ul, values, deleteCallback){
+    var fillList = function(ul, values){
         values.forEach(function(value){
             var li = newListItem();
+            li.id = dateWithoutSpecialChars(value.d);
             li.appendChild(newFormattedTextForValue(value));
-            li.appendChild(createDeleteLink(value, deleteCallback, li));
+            li.appendChild(createDeleteLink(value, li));
             ul.appendChild(li);
         });
-        fillAddWeightValues(values);
     };
 
-    var render = function(values, deleteCallback){
-        var ul = document.querySelector("#values ul");
+    var setValues = function(values){
+        var ul = document.querySelector("#"+valuesId+" ul");
         clearList(ul);
-        fillList(ul, values, deleteCallback);
+        fillList(ul, values);
+    };
+
+    var remove = function(value){
+        var li = document.querySelector("#"+valuesId+" ul li#"+dateWithoutSpecialChars(value.d));
+        li.parentElement.removeChild(li);
     };
 
     return {
-        render:render
+        setValues:setValues,
+        remove:remove
     }
 })();
