@@ -2,13 +2,16 @@ var ChartByDateView = (function(){
     this.chartContainer = "#chartContainer";
     
     var loadValues = function(dataset){
+
+      var svgId = "weightSVGChart";
+
       var width = 600;
       var height = 400;
       var margin = 40;
 
       var rangeMargin = 5;
 
-      var svgId = "weightSVGChart";
+      
       var weightLineDiv = this.chartContainer;
 
       d3.selectAll("#"+svgId).remove();
@@ -76,6 +79,10 @@ var ChartByDateView = (function(){
 
       chartSVG.append("path")
           .attr("class", "line")
+          .attr("d", lineFun(dataset));
+
+      chartSVG.append("circle")
+          .attr("class", "circle")
           .attr("d", lineFun(dataset));
     }.bind(this);
 

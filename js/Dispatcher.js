@@ -79,6 +79,7 @@ var Dispatcher = (function(){
             Persistence.readAll(function(values){
                 ValuesView.setValues(values);
                 ChartByDateView.loadValues(values);
+                refreshModal(values);
             });
         });
     };
