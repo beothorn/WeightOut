@@ -20,5 +20,11 @@ $(function(){
     container: 'body'
   });
 
+  $(window).on('hashchange',function(){ 
+      var view = location.hash.slice(1);
+      if(view === "" || view === "!") return;
+      Dispatcher.bringPanelUp(view);
+  });
+
   Dispatcher.startApp();
 });

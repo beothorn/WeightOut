@@ -61,7 +61,12 @@ var TabsView = (function(){
     var renderTabMenuEntry = function(name, text){
         var li = document.createElement("li");
         li.className = name;
-        if(document.querySelector("div#"+name).classList.contains("firstPanel")){
+        var panelSelector = "div#"+name;
+        var panelDiv = document.querySelector(panelSelector); 
+        if(panelDiv === null){
+            throw new Error("Panel with selector "+panelSelector+" not found.");
+        }
+        if(panelDiv.classList.contains("firstPanel")){
             li.className += " active";
             window.location.hash = "#"+name;
         }

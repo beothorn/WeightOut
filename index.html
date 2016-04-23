@@ -3,8 +3,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-<!--Import Google Icon Font-->
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -36,6 +34,8 @@
 
 <div class="container">
 
+<!-- PANELS -->
+
 <div id="overview" style="display:none" class="firstPanel panel">
     <div class="row">
         <div id="overviewCardSlot" class="col s12"></div>
@@ -55,13 +55,19 @@
 
 </div>
 
+<div id="bydate" class="panel" style="display:none">
+    <div id="chartContainer"></div>
+</div>
+
+<div id="raw" class="panel" style="display:none">
+    import export here
+</div>
+
 <div id="settings" class="panel" style="display:none">
     <h1>Settings goes here</h1>
 </div>
 
-<div id="bydate" class="panel" style="display:none">
-    <div id="chartContainer"></div>
-</div>
+<!-- PANELS END -->
 
 <div id="addValueModal" class="modal">
     <div class="modal-content">

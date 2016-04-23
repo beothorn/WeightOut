@@ -19,12 +19,6 @@ var Dispatcher = (function(){
         $("#hamburguerButton").sideNav('hide');//depends on jquery cause it's a plugin :(
     };
 
-    $(window).on('hashchange',function(){ 
-        var view = location.hash.slice(1);
-        if(view === "" || view === "!") return;
-        bringPanelUp(view);
-    });
-
     var refreshModal = function(values){
         if(values.length > 0){
             var lastValue = values[values.length - 1].w;
@@ -61,12 +55,10 @@ var Dispatcher = (function(){
             "charts":{
               "category":"Charts",
               "subCategories":{
-                "bydate":"By Date",
-        //        "variation":"Variation",
-        //        "variationByWeekday":"Week day variation",
-        //        "bmi":"BMI"
+                "bydate":"By Date"
               }
             },
+            "raw":"Export/Import",
             "settings":"Settings"
         });
     };
@@ -83,6 +75,7 @@ var Dispatcher = (function(){
     return {
         deleteValue:deleteValue,
         startApp:startApp,
-        addValue:addValue
+        addValue:addValue,
+        bringPanelUp:bringPanelUp
     };
 })();
