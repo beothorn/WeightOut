@@ -79,6 +79,24 @@ var ChartByDateView = (function(){
       chartSVG.append("path")
           .attr("class", "line")
           .attr("d", lineFun(dataset));
+        
+      chartSVG
+          .selectAll("circle")
+          .data(dataset)
+          .enter()
+          .append("circle")
+          .attr("cx", function(v){return xRange(formatDate.parse(v.d));})
+          .attr("cy", function(v){return yRange(v.w);})
+          .attr("r",7)
+          .on("click", function(dataPoint){
+              document.querySelector("#dataPointDescription .weight").innerHTML = "";
+              document.querySelector("#dataPointDescription .weight").appendChild(document.createTextNode(dataPoint.w+" kg"));
+              document.querySelector("#dataPointDescription .date").innerHTML = "";
+              document.querySelector("#dataPointDescription .date").appendChild(document.createTextNode(dataPoint.d));
+              document.getElementById("dataPointDescription").style.display = "block";
+          })
+      ;
+
     }.bind(this);
 
     return{
