@@ -26,7 +26,7 @@ var AddValueModalView = (function(dispatcher){
        $("#weightDecimal").val( Math.max($("#weightDecimalRange").val(),9));
     });
 
-    var setValue = function(val){
+    var setWeigth = function(val){
         var weightSplitted = (val+"").split(".");
         document.getElementById("weightUnit").value = weightSplitted[0];
         document.getElementById("weightDecimal").value = weightSplitted[1];
@@ -35,7 +35,17 @@ var AddValueModalView = (function(dispatcher){
         range.setAttribute("max", val + 5);
     };
 
+    var setDate = function(date){
+        document.getElementById("datePicker").value = date;
+    };
+
+    var setValue = function(value){
+      setWeigth(value.w);
+      setDate(value.d);  
+    };
+
     return {
+        setWeigth:setWeigth,
         setValue:setValue
     }; 
 })(Dispatcher);

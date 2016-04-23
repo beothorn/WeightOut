@@ -61,22 +61,39 @@
             <div id="chartContainer"></div>
         </div>
     </div>
+     <div class="row">
+        <div class="col s6">
+            <input id="startPeriodDatePicker" class="datepicker" type="date">
+            <label for="startPeriodDatePicker">Start</label>
+        </div>
+        <div class="col s6">
+            <input id="endPeriodDatePicker" class="datepicker" type="date">
+            <label for="endPeriodDatePicker">End</label>
+        </div>
+    </div>
     <div id="dataPointDescription" style="display:none">
-        <div class="row">
-            <div class="col s6">
-                Weight:
+        <div class="card-panel teal">
+            <div class="row">
+                <div class="white-text col s6">
+                    Weight:
+                </div>
+                <div class="white-text weight col s6">
+                    33 kg
+                </div>
             </div>
-            <div class="weight col s6">
-                33 kg
+            <div class="row">
+                <div class="white-text col s6">
+                    Date:
+                </div>
+                <div class="white-text date col s6">
+                    03-02-2016
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s6">
-                Date:
-            </div>
-            <div class="date col s6">
-                03-02-2016
-            </div>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#addValueModal">
+              <i class="large material-icons">edit</i>
+            </a>
         </div>
     </div>
 </div>

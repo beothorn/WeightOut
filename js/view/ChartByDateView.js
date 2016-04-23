@@ -1,7 +1,21 @@
-var ChartByDateView = (function(){
+var ChartByDateView = (function(dispatcher){
     this.chartContainer = "#chartContainer";
+
+    var startPeriodDatePicker = "startPeriodDatePicker";
+    var endPeriodDatePicker = "endPeriodDatePicker";
+
+    var formatDate = d3.time.format("%Y-%m-%d");
+
+    this.dataset = [];
     
-    var loadValues = function(dataset){
+    var setPeriodOnFields = function(period){
+      document.getElementById(startPeriodDatePicker).value = period[0].toDateInputValue();
+      document.getElementById(endPeriodDatePicker).value = period[1].toDateInputValue();
+    };
+
+    var updateChart = function(startPeriod, endPeriod){
+      
+      var dateMaxMin = [formatDate.parse(startPeriod), formatDate.parse(endPeriod)];
 
       var svgId = "weightSVGChart";
 
@@ -23,8 +37,6 @@ var ChartByDateView = (function(){
       var rangeYStart = height - margin;
       var rangeYEnd = margin;
 
-      var formatDate = d3.time.format("%Y-%m-%d");
-
       var weightByDateContainer = d3.select(weightLineDiv);
 
       var chartSVG = weightByDateContainer
@@ -33,12 +45,11 @@ var ChartByDateView = (function(){
         .attr("viewBox", "0 0 "+width+" "+height)
         .attr("id", svgId);
 
-      var dateFun = function(d){return formatDate.parse(d.d)};
       var xRange = d3
         .time
         .scale()
         .range([rangeXStart, rangeXEnd])
-        .domain(d3.extent(dataset, dateFun));
+        .domain(dateMaxMin);
 
       var weigthFun = function(d){return d.w};
       var yRange = d3
@@ -92,6 +103,7 @@ var ChartByDateView = (function(){
           .attr("r",7)
           .attr("style","fill:#ffffff;stroke:#00005c;stroke-width:2")
           .on("click", function(dataPoint, index){
+              dispatcher.updateModalWithValue(dataPoint);
               lastPoint.setAttribute("style", "fill:#ffffff;stroke:#00005c;stroke-width:2");
               lastPoint = this;
               this.setAttribute("style", "fill:#cccccc;stroke:#00005c;stroke-width:2");
@@ -102,10 +114,31 @@ var ChartByDateView = (function(){
               document.getElementById("dataPointDescription").style.display = "block";
           })
       ;
+    };
 
+    var onChangePeriod = function(){
+        updateChart(document.getElementById(startPeriodDatePicker).value, document.getElementById(endPeriodDatePicker).value);
+    };
+
+    $("#"+startPeriodDatePicker).change(function(){
+        onChangePeriod();
+    });
+
+    $("#"+endPeriodDatePicker).change(function(){
+        onChangePeriod();
+    });
+
+    var loadValues = function(dataset){
+
+      this.dataset = dataset;
+
+      var dateFun = function(d){return formatDate.parse(d.d)};
+      var dateMaxMin = d3.extent(dataset, dateFun);
+      setPeriodOnFields(dateMaxMin);
+      onChangePeriod();
     }.bind(this);
 
     return{
         loadValues:loadValues
     }
-})();
+})(Dispatcher);

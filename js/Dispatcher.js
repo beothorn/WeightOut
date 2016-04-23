@@ -1,6 +1,27 @@
 var Dispatcher = (function(){
 
+    var updateModalWithValue = function(value){
+        AddValueModalView.setValue(value);
+    };
+
+    var refreshModal = function(values){
+        if(values.length > 0){
+            var lastValue = values[values.length - 1].w;
+            AddValueModalView.setWeigth(lastValue);    
+        }  
+    };
+
+    var onPanelLoad = function(panelName){
+        if(panelName === "bydate"){
+            Persistence.readAll(function(values){
+                refreshModal(values);
+            });
+            return;
+        }
+    };
+
     var bringPanelUp = function(panelName){
+        onPanelLoad(panelName);
         var activeMenuItems = document.querySelectorAll("nav ul li.active");
         for(var i=0; i< activeMenuItems.length; i++){
             activeMenuItems[i].classList.remove("active");
@@ -23,17 +44,10 @@ var Dispatcher = (function(){
         $("#hamburguerButton").sideNav('hide');//depends on jquery cause it's a plugin :(
     };
 
-    var refreshModal = function(values){
-        if(values.length > 0){
-            var lastValue = values[values.length - 1].w;
-            AddValueModalView.setValue(lastValue);    
-        }  
-    };
-
     var deleteValue = function(value){
         Persistence.remove(value.d, function(){
            ValuesView.remove(value);
-            refreshModal(values); 
+           refreshModal(values); 
         });
     };
 
@@ -88,6 +102,7 @@ var Dispatcher = (function(){
         deleteValue:deleteValue,
         startApp:startApp,
         addValue:addValue,
-        bringPanelUp:bringPanelUp
+        bringPanelUp:bringPanelUp,
+        updateModalWithValue:updateModalWithValue
     };
 })();
