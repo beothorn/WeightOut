@@ -11,7 +11,6 @@ var ChartByDateView = (function(){
 
       var rangeMargin = 5;
 
-      
       var weightLineDiv = this.chartContainer;
 
       d3.selectAll("#"+svgId).remove();
@@ -79,10 +78,6 @@ var ChartByDateView = (function(){
 
       chartSVG.append("path")
           .attr("class", "line")
-          .attr("d", lineFun(dataset));
-
-      chartSVG.append("circle")
-          .attr("class", "circle")
           .attr("d", lineFun(dataset));
     }.bind(this);
 
