@@ -6,7 +6,7 @@ var ChartByDateView = (function(dispatcher){
 
     var formatDate = d3.time.format("%Y-%m-%d");
 
-    this.dataset = [];
+    this.volatileDataset = [];
     
     var setPeriodOnFields = function(period){
       document.getElementById(startPeriodDatePicker).value = period[0].toDateInputValue();
@@ -16,6 +16,8 @@ var ChartByDateView = (function(dispatcher){
     var updateChart = function(startPeriod, endPeriod){
       
       var dateMaxMin = [formatDate.parse(startPeriod), formatDate.parse(endPeriod)];
+
+      var dataset = this.volatileDataset;//TODO: remove dates smaller than min
 
       var svgId = "weightSVGChart";
 
@@ -130,7 +132,7 @@ var ChartByDateView = (function(dispatcher){
 
     var loadValues = function(dataset){
 
-      this.dataset = dataset;
+      this.volatileDataset = dataset;
 
       var dateFun = function(d){return formatDate.parse(d.d)};
       var dateMaxMin = d3.extent(dataset, dateFun);
