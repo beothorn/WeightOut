@@ -39,16 +39,18 @@ var Dispatcher = (function(){
         });
     };
 
-    var loadValues = function(){
-        Persistence.readAll(function(values){
-            ValuesView.setValues(values);
-            refreshModal(values);
-            loadTab();
-            OverviewView.loadOverview(values);
-            LoadingView.hideLoading();
-            TabsView.show();
-            OverviewView.show();
-            ChartByDateView.loadValues(values);
+    var startApp = function(){
+        Persistence.doAfterLoad(function(){
+            Persistence.readAll(function(values){
+                ValuesView.setValues(values);
+                refreshModal(values);
+                loadTab();
+                OverviewView.loadOverview(values);
+                LoadingView.hideLoading();
+                TabsView.show();
+                OverviewView.show();
+                ChartByDateView.loadValues(values);
+            });
         });
     };
 
@@ -80,7 +82,7 @@ var Dispatcher = (function(){
 
     return {
         deleteValue:deleteValue,
-        loadValues:loadValues,
+        startApp:startApp,
         addValue:addValue
     };
 })();

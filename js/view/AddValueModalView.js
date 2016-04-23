@@ -1,4 +1,4 @@
-var AddValueModalView = (function(){
+var AddValueModalView = (function(dispatcher){
    
     $("#enterWeight").click(function(){
         var date = $("#datePicker").val();
@@ -11,7 +11,7 @@ var AddValueModalView = (function(){
 
         var weight = kg + grams;
         
-        Dispatcher.addValue(weight, date);
+        dispatcher.addValue(weight, date);
     });
 
     var setValue = function(val){
@@ -26,4 +26,4 @@ var AddValueModalView = (function(){
     return {
         setValue:setValue
     }; 
-})();
+})(Dispatcher);

@@ -4,6 +4,10 @@ Date.prototype.toDateInputValue = (function() {
   return local.toJSON().slice(0,10);
 });
 
+var dateWithoutSpecialChars = function(date){
+    return "val"+date.split("-").join("");
+};
+
 $(function(){
 
   $("#hamburguerButton").sideNav();
@@ -16,7 +20,5 @@ $(function(){
     container: 'body'
   });
 
-  Persistence.doAfterLoad(function(){
-    Dispatcher.loadValues();
-  });
+  Dispatcher.startApp();
 });

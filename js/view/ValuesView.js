@@ -1,47 +1,14 @@
-var ValuesView = (function(){
+var ValuesView = (function(dispatcher){
 
     var valuesId = "values";
-
-    var dateWithoutSpecialChars = function(date){
-        return "val"+date.split("-").join("");
-    };
 
     var clearList = function(ul){
         ul.innerHTML = "";
     };
 
-    var newListItem = function(){
-        var li = document.createElement("li");
-        li.className = "collection-item";
-        return li;
-    };
-
-    var newFormattedTextForValue = function(value){
-        var span = document.createElement("span");
-        span.appendChild(document.createTextNode(value.d+" - "+value.w));
-        return span;
-    }
-
-    var createDeleteLink = function(value, li){
-        var a = document.createElement("a");
-        a.href = "#";
-        a.className="secondary-content";
-        a.onclick = function(){
-            Dispatcher.deleteValue(value);
-        };
-        var i = document.createElement("i");
-        i.className = "material-icons";
-        i.appendChild(document.createTextNode("delete"));
-        a.appendChild(i);
-        return a;
-    };
-
     var fillList = function(ul, values){
         values.forEach(function(value){
-            var li = newListItem();
-            li.id = dateWithoutSpecialChars(value.d);
-            li.appendChild(newFormattedTextForValue(value));
-            li.appendChild(createDeleteLink(value, li));
+            var li =  ValueListItem.create(value);
             ul.appendChild(li);
         });
     };
@@ -61,4 +28,4 @@ var ValuesView = (function(){
         setValues:setValues,
         remove:remove
     }
-})();
+})(Dispatcher);
