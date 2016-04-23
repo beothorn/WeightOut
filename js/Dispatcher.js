@@ -59,7 +59,14 @@ var Dispatcher = (function(){
               }
             },
             "raw":"Export/Import",
-            "settings":"Settings"
+            "settings":"Settings",
+            "help":{
+              "category":"Help",
+              "subCategories":{
+                "chartsHelp":"Charts",
+                "about":"About"
+              }
+            }
         });
     };
 

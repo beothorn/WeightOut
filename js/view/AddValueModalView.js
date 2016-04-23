@@ -14,6 +14,18 @@ var AddValueModalView = (function(dispatcher){
         dispatcher.addValue(weight, date);
     });
 
+    $("#weightUnitRange").change(function(){
+       $("#weightUnit").val($("#weightUnitRange").val());
+    });
+
+    $("#weightDecimalRange").change(function(){
+       $("#weightDecimal").val($("#weightDecimalRange").val());
+    });
+
+    $("#weightDecimal").change(function(){
+       $("#weightDecimal").val( Math.max($("#weightDecimalRange").val(),9));
+    });
+
     var setValue = function(val){
         var weightSplitted = (val+"").split(".");
         document.getElementById("weightUnit").value = weightSplitted[0];

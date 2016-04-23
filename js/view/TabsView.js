@@ -1,4 +1,4 @@
-var TabsView = (function(){
+var TabsView = (function(dispatcher){
 
     var topNav = function(){
         return document.getElementById("top-nav");
@@ -46,7 +46,7 @@ var TabsView = (function(){
             var li = document.createElement("li");
             li.className = sub;
             var a = document.createElement("a");
-            a.onClick = function(){bringPanelUp(sub);};
+            a.onClick = function(){dispatcher.bringPanelUp(sub);};
             a.appendChild(document.createTextNode(subCategories[sub]));
             a.href = "#"+sub;
             li.appendChild(a);
@@ -98,4 +98,4 @@ var TabsView = (function(){
         renderTabs:renderTabs,
         show:show
     };
-})();
+})(Dispatcher);
