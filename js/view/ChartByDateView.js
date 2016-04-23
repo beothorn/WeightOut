@@ -80,6 +80,8 @@ var ChartByDateView = (function(){
           .attr("class", "line")
           .attr("d", lineFun(dataset));
         
+      var lastPoint = { setAttribute:function(){}};
+
       chartSVG
           .selectAll("circle")
           .data(dataset)
@@ -88,7 +90,11 @@ var ChartByDateView = (function(){
           .attr("cx", function(v){return xRange(formatDate.parse(v.d));})
           .attr("cy", function(v){return yRange(v.w);})
           .attr("r",7)
-          .on("click", function(dataPoint){
+          .attr("style","fill:#ffffff;stroke:#00005c;stroke-width:2")
+          .on("click", function(dataPoint, index){
+              lastPoint.setAttribute("style", "fill:#ffffff;stroke:#00005c;stroke-width:2");
+              lastPoint = this;
+              this.setAttribute("style", "fill:#cccccc;stroke:#00005c;stroke-width:2");
               document.querySelector("#dataPointDescription .weight").innerHTML = "";
               document.querySelector("#dataPointDescription .weight").appendChild(document.createTextNode(dataPoint.w+" kg"));
               document.querySelector("#dataPointDescription .date").innerHTML = "";
