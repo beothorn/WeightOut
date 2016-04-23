@@ -68,10 +68,11 @@ var Persistence = (function(){
       }
     }.bind(this);
 
-    var remove = function(date){
+    var remove = function(date, onSuccess){
         var request = db.transaction(["measurement"], "readwrite")
             .objectStore("measurement")
-            .delete(date);    
+            .delete(date);
+        onSuccess();//TODO: find how to call only on success    
     }.bind(this);
 
     return {

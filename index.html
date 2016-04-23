@@ -14,7 +14,11 @@
 </head>
 <body>
 
-<div class="navbar-fixed">
+<div id="loading">
+    <h1>Loading ...</h1>
+</div>
+
+<div id = "mainNavBar" class="navbar-fixed" style="display:none">
     <nav>
         <div id="navBar" class="nav-wrapper black">
             <a class="brand-logo center">Weight Out</a>
@@ -32,7 +36,7 @@
 
 <div class="container">
 
-<div id="overview" class="firstPanel panel">
+<div id="overview" style="display:none" class="firstPanel panel">
     <div class="row">
       <div class="col s12">
         <div class="card-panel teal">
@@ -107,9 +111,12 @@
 <script src="js/lib/d3.min.js"></script>
 <script src="js/Persistence.js"></script>
 <script src="js/Dispatcher.js"></script>
+<script src="js/view/LoadingView.js"></script>
+<script src="js/view/OverviewView.js"></script>
 <script src="js/view/ChartByDateView.js"></script>
 <script src="js/view/ValuesView.js"></script>
 <script src="js/view/AddValueModalView.js"></script>
+<script src="js/view/TabsView.js"></script>
 <script src="js/renderer.js"></script>
 <script src="js/main.js"></script>
 

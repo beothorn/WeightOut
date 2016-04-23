@@ -1,7 +1,7 @@
 var ChartByDateView = (function(){
     this.chartContainer = "#chartContainer";
     
-    var setupWeightLineChart = function(dataset){
+    var loadValues = function(dataset){
       var width = 600;
       var height = 400;
       var margin = 40;
@@ -80,6 +80,6 @@ var ChartByDateView = (function(){
     }.bind(this);
 
     return{
-        setupWeightLineChart: setupWeightLineChart
+        loadValues:loadValues
     }
 })();
