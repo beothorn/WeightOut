@@ -15,7 +15,11 @@ var Dispatcher = (function(){
             panels[i].style.display = "none";
         }
 
-        document.getElementById(panelName).style.display = "block";
+        var panelById = document.getElementById(panelName);
+        if(panelById === null){
+            throw new Error("Panel with id "+panelName+" not found.");
+        }
+        panelById.style.display = "block";
         $("#hamburguerButton").sideNav('hide');//depends on jquery cause it's a plugin :(
     };
 

@@ -12,12 +12,17 @@ var TabsView = (function(dispatcher){
         return document.getElementById("navBar");
     };
 
+    var mainNavBar = function(){
+        return document.getElementById("mainNavBar");
+    };
+
     var renderDropdownMenuItem = function(category, categoryName, dropDownToActivate){
         var li = document.createElement("li");
         li.className = category;
         var a = document.createElement("a");
         a.setAttribute("data-activates", dropDownToActivate);
         a.className = "dropdown-button";
+        a.href = "#!";
         a.appendChild(document.createTextNode(categoryName));
         var i = document.createElement("i");
         i.className = "material-icons right";
@@ -54,8 +59,8 @@ var TabsView = (function(dispatcher){
             ulMobile.appendChild(li.cloneNode(true));
         }
 
-        navBar().appendChild(ul);
-        navBar().appendChild(ulMobile);
+        mainNavBar().appendChild(ul);
+        mainNavBar().appendChild(ulMobile);
     };
 
     var renderTabMenuEntry = function(name, text){
@@ -91,7 +96,9 @@ var TabsView = (function(dispatcher){
     };
 
     var show = function(){
-        document.getElementById("mainNavBar").style.display = "block";
+        $(".dropdown-button").dropdown();
+        $("#hamburguerButton").sideNav();
+        mainNavBar().style.display = "block";
     };
 
     return {

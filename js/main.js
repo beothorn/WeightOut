@@ -10,7 +10,6 @@ var dateWithoutSpecialChars = function(date){
 
 $(function(){
 
-  $("#hamburguerButton").sideNav();
   $('.modal-trigger').leanModal();
   $('#datePicker').val(new Date().toDateInputValue());
   $('.datepicker').pickadate({
