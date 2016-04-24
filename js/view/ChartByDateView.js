@@ -136,6 +136,8 @@ var ChartByDateView = (function(dispatcher){
 
     var loadValues = function(dataset){
 
+      if(dataset.length == 0) return;
+
       this.volatileDataset = dataset;
 
       var dateFun = function(d){return formatDate.parse(d.d)};
