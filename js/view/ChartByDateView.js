@@ -21,7 +21,13 @@ var ChartByDateView = (function(dispatcher){
 
       var dateMaxMin = [formatDate.parse(startPeriod), formatDate.parse(endPeriod)];
 
-      var dataset = this.volatileDataset;//TODO: remove dates smaller than min
+      var dataset = this.volatileDataset.filter(function(val){
+          var date = formatDate.parse(val.d);
+          return date >= formatDate.parse(startPeriod);
+      }).filter(function(val){
+          var date = formatDate.parse(val.d);
+          return date <= formatDate.parse(endPeriod);
+      });
 
       var svgId = "weightSVGChart";
 
