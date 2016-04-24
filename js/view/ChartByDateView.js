@@ -9,16 +9,12 @@ var ChartByDateView = (function(dispatcher){
     this.volatileDataset = [];
     
     var setPeriodOnFields = function(period){
-      $('#'+startPeriodDatePicker).val(period[0].toDateInputValue());
-      $('#'+startPeriodDatePicker).parent().find("label").toggleClass("active");
-      $('#'+endPeriodDatePicker).val(period[1].toDateInputValue());
-      $('#'+endPeriodDatePicker).parent().find("label").toggleClass("active");
+      document.getElementById(startPeriodDatePicker).value = period[0].toDateInputValue();
+      document.getElementById(endPeriodDatePicker).value = period[1].toDateInputValue();
     };
 
     var updateChart = function(startPeriod, endPeriod){
       
-      if(startPeriod === "" || endPeriod === "") return;
-
       var dateMaxMin = [formatDate.parse(startPeriod), formatDate.parse(endPeriod)];
 
       var dataset = this.volatileDataset;//TODO: remove dates smaller than min
@@ -140,12 +136,7 @@ var ChartByDateView = (function(dispatcher){
 
       var dateFun = function(d){return formatDate.parse(d.d)};
       var dateMaxMin = d3.extent(dataset, dateFun);
-
-      $('#'+startPeriodDatePicker).val(new Date().toDateInputValue());
-      $('#'+endPeriodDatePicker).val(new Date().toDateInputValue());
-
       setPeriodOnFields(dateMaxMin);
-
       onChangePeriod();
     }.bind(this);
 

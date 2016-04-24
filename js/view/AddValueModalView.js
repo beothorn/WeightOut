@@ -1,9 +1,5 @@
 var AddValueModalView = (function(dispatcher){
-    
-    $('.modal-trigger').leanModal();
-
-    $('#datePicker').val(new Date().toDateInputValue());
-
+   
     $("#enterWeight").click(function(){
         var date = $("#datePicker").val();
 
