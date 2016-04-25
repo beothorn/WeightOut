@@ -56,6 +56,7 @@ var Dispatcher = (function(){
             Persistence.readAll(function(values){
                 ChartByDateView.setup();
                 AddValueModalView.setup();
+                WeightVarianceChart.setup();
                 ValuesView.setValues(values);
                 refreshModal(values);
                 loadTab();
@@ -65,6 +66,7 @@ var Dispatcher = (function(){
                 TabsView.show();
                 OverviewView.show();
                 ChartByDateView.loadValues(values);
+                WeightVarianceChart.loadValues(values);
             });
         });
     };
