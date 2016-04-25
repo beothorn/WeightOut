@@ -32,7 +32,7 @@ body {
     margin: 0px;
 }
         
-#chartContainer {
+#byDateChart {
     display: inline-block;
     position: relative;
     width: 100%;

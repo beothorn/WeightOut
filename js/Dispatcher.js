@@ -54,9 +54,12 @@ var Dispatcher = (function(){
     var startApp = function(){
         Persistence.doAfterLoad(function(){
             Persistence.readAll(function(values){
+                ChartByDateView.setup();
+                AddValueModalView.setup();
                 ValuesView.setValues(values);
                 refreshModal(values);
                 loadTab();
+                
                 OverviewView.loadOverview(values);
                 LoadingView.hideLoading();
                 TabsView.show();
@@ -73,7 +76,8 @@ var Dispatcher = (function(){
             "charts":{
               "category":"Charts",
               "subCategories":{
-                "bydate":"By Date"
+                "bydate":"By Date",
+                "weightVariance":"Weight Variance"
               }
             },
             "raw":"Export/Import",

@@ -1,23 +1,41 @@
-var ChartByDateView = (function(dispatcher){
-    this.chartContainer = "#chartContainer";
-
-    var startPeriodDatePicker = "startPeriodDatePicker";
-    var endPeriodDatePicker = "endPeriodDatePicker";
-
-    var formatDate = d3.time.format("%Y-%m-%d");
-
-    this.volatileDataset = [];
+var ChartByDateView = (function(dispatcher){    
     
+    var setup = function(){
+        this.volatileDataset = [];
+        this.startPeriodDatePicker = "startPeriodDatePicker";
+        this.endPeriodDatePicker = "endPeriodDatePicker";
+
+        this.chartContainer = "#byDateChart";
+
+        this.formatDate = d3.time.format("%Y-%m-%d");
+
+        this.onChangePeriod = function(){
+            updateChart(document.getElementById(this.startPeriodDatePicker).value, document.getElementById(endPeriodDatePicker).value);
+        }.bind(this);
+
+        var onChangePeriod = this.onChangePeriod;
+
+        $("#"+this.startPeriodDatePicker).change(function(){
+            onChangePeriod();
+        });
+
+        $("#"+this.endPeriodDatePicker).change(function(){
+            onChangePeriod();
+        });
+    }.bind(this);
+
     var setPeriodOnFields = function(period){
-      $('#'+startPeriodDatePicker).val(period[0].toDateInputValue());
-      $('#'+startPeriodDatePicker).parent().find("label").toggleClass("active");
-      $('#'+endPeriodDatePicker).val(period[1].toDateInputValue());
-      $('#'+endPeriodDatePicker).parent().find("label").toggleClass("active");
-    };
+      $('#'+this.startPeriodDatePicker).val(period[0].toDateInputValue());
+      $('#'+this.startPeriodDatePicker).parent().find("label").toggleClass("active");
+      $('#'+this.endPeriodDatePicker).val(period[1].toDateInputValue());
+      $('#'+this.endPeriodDatePicker).parent().find("label").toggleClass("active");
+    }.bind(this);
 
     var updateChart = function(startPeriod, endPeriod){
       
       if(startPeriod === "" || endPeriod === "") return;
+
+      var formatDate = this.formatDate;
 
       var dateMaxMin = [formatDate.parse(startPeriod), formatDate.parse(endPeriod)];
 
@@ -128,36 +146,27 @@ var ChartByDateView = (function(dispatcher){
       ;
     };
 
-    var onChangePeriod = function(){
-        updateChart(document.getElementById(startPeriodDatePicker).value, document.getElementById(endPeriodDatePicker).value);
-    };
-
-    $("#"+startPeriodDatePicker).change(function(){
-        onChangePeriod();
-    });
-
-    $("#"+endPeriodDatePicker).change(function(){
-        onChangePeriod();
-    });
-
     var loadValues = function(dataset){
 
       if(dataset.length == 0) return;
 
       this.volatileDataset = dataset;
 
+      var formatDate = this.formatDate;
+
       var dateFun = function(d){return formatDate.parse(d.d)};
       var dateMaxMin = d3.extent(dataset, dateFun);
 
-      $('#'+startPeriodDatePicker).val(new Date().toDateInputValue());
-      $('#'+endPeriodDatePicker).val(new Date().toDateInputValue());
+      $('#'+this.startPeriodDatePicker).val(new Date().toDateInputValue());
+      $('#'+this.endPeriodDatePicker).val(new Date().toDateInputValue());
 
       setPeriodOnFields(dateMaxMin);
 
-      onChangePeriod();
+      this.onChangePeriod();
     }.bind(this);
 
     return{
-        loadValues:loadValues
+        loadValues:loadValues,
+        setup:setup
     }
 })(Dispatcher);
