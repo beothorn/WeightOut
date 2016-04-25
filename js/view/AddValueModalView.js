@@ -1,34 +1,37 @@
 var AddValueModalView = (function(dispatcher){
     
-    $('.modal-trigger').leanModal();
+    var setup = function(){
+        $('.modal-trigger').leanModal();
 
-    $('#datePicker').val(new Date().toDateInputValue());
+        $('#datePicker').val(new Date().toDateInputValue());
+        $('#datePicker').parent().find("label").toggleClass("active");
 
-    $("#enterWeight").click(function(){
-        var date = $("#datePicker").val();
+        $("#enterWeight").click(function(){
+            var date = $("#datePicker").val();
 
-        var kgInput = $("#weightUnit").val() || "0";
-        var gramsInput = $("#weightDecimal").val() || "0";
+            var kgInput = $("#weightUnit").val() || "0";
+            var gramsInput = $("#weightDecimal").val() || "0";
 
-        var kg = parseFloat(kgInput);
-        var grams = parseFloat(gramsInput/10);
+            var kg = parseFloat(kgInput);
+            var grams = parseFloat(gramsInput/10);
 
-        var weight = kg + grams;
-        
-        dispatcher.addValue(weight, date);
-    });
+            var weight = kg + grams;
 
-    $("#weightUnitRange").change(function(){
-       $("#weightUnit").val($("#weightUnitRange").val());
-    });
+            dispatcher.addValue(weight, date);
+        });
 
-    $("#weightDecimalRange").change(function(){
-       $("#weightDecimal").val($("#weightDecimalRange").val());
-    });
+        $("#weightUnitRange").change(function(){
+           $("#weightUnit").val($("#weightUnitRange").val());
+        });
 
-    $("#weightDecimal").change(function(){
-       $("#weightDecimal").val( Math.max($("#weightDecimalRange").val(),9));
-    });
+        $("#weightDecimalRange").change(function(){
+           $("#weightDecimal").val($("#weightDecimalRange").val());
+        });
+
+        $("#weightDecimal").change(function(){
+           $("#weightDecimal").val( Math.max($("#weightDecimalRange").val(),9));
+        });    
+    };
 
     var setWeigth = function(val){
         var weightSplitted = (val+"").split(".");
@@ -50,6 +53,7 @@ var AddValueModalView = (function(dispatcher){
 
     return {
         setWeigth:setWeigth,
-        setValue:setValue
+        setValue:setValue,
+        setup:setup
     }; 
 })(Dispatcher);
